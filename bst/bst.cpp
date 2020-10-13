@@ -7,14 +7,21 @@ int main()
 {   
     tree<int> number;
     number.insert(5);
-    number.insert(53);
     number.insert(4);
     number.insert(1);
     number.insert(-1);
     number.insert(3);
+    number.insert(6);
     number.remove(5);
+    number.get_minimum();
     std::cout << "Hello World!\n";
-    std::cout << (number.get_minimum())->n_data;
+    std::cout << (number.get_minimum())->n_data << std::endl;
+    std::cout << (number.get_maximum())->n_data << std::endl;
+    std::cout << "After making a copy of the old tree." << std::endl;
+    tree<int> another(number);
+    another.insert(20);
+    std::cout << (another.get_maximum())->n_data << std::endl;
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

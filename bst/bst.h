@@ -85,9 +85,28 @@ private:
 		}
 		return get_minimum(node->n_left);
 	}
+
+	Node* get_maximum(Node* node) const {
+		if (node->n_right == nullptr) {
+			return node;
+		}
+		return get_maximum(node->n_right);
+	}
+	Node* clone_tree(Node* node) {
+		if (node == nullptr) {
+			return nullptr;
+		}
+		else {
+			return new Node(node->n_data, clone_tree(node->n_left), clone_tree(node->n_right));
+		}
+	}
 public:
 	tree() : root(nullptr) {
 		//empty contructor
+	}
+
+	tree(const tree& copy): root(nullptr) {
+		root = clone_tree(copy.root);
 	}
 	void insert(compareable& element) {
 		insert(element, root);
@@ -103,6 +122,9 @@ public:
 	}
 	Node* get_minimum() {
 		return get_minimum(root);
+	}
+	Node* get_maximum() {
+		return get_maximum(root);
 	}
 
 	~tree() {
